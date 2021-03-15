@@ -4,20 +4,18 @@ const router = express.Router();;
 
 
 router.get('/', async (req, res) => {
-    const categoryList = await Category.find();
-    if (!categoryList) {
-        res.status(500).json({ success: false })
+    try {
+        const categoryList = await Category.find();
+        if (!categoryList) {
+            res.status(500).json({ success: false })
 
+        }
+        res.send(categoryList);
+    } catch (err) {
+        console.log('getting an error = > ', err);
     }
-    res.send(categoryList);
 })
-router.get('/', async (req, res) => {
-    const categoryList = await Category.find();
-    if (!categoryList) {
-        res.status(500).json({ success: false })
-    }
-    res.send(categoryList);
-})
+
 
 router.get('/:id', async (req, res) => {
     const category = await Category.findById(req.params.id)
