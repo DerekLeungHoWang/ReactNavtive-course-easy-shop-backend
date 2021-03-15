@@ -24,6 +24,7 @@ router.get('/:id', async(req,res)=>{
 
 
 router.post('/register', async (req, res) => {
+    console.log('attempting to create user');
     let user = new User({
         name:req.body.name,
         email:req.body.email,
